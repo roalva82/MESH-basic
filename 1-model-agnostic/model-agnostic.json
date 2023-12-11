@@ -1,0 +1,116 @@
+{
+  "exec": {
+    "met": "/home/roalva/repos/datatool/extract-dataset.sh",
+    "gis": "/home/roalva/repos/gistool/extract-gis.sh",
+    "remap": "easymore cli"
+  },
+
+  "args": {
+    "met": [{
+      "dataset": "RDRS",
+      "dataset-dir": "/project/rpp-kshook/Model_Output/RDRSv2.1/",
+      "variable": [
+        "RDRS_v2.1_P_P0_SFC",
+        "RDRS_v2.1_P_HU_1.5m",
+        "RDRS_v2.1_P_TT_1.5m",
+        "RDRS_v2.1_P_UVC_10m",
+        "RDRS_v2.1_A_PR0_SFC",
+        "RDRS_v2.1_P_FB_SFC",
+        "RDRS_v2.1_P_FI_SFC"
+      ],
+      "output-dir": "/home/roalva/scratch/4815/datatool_outputs",
+      "start-date": "1980-01-01T13:00:00",
+      "end-date": "1980-12-31T12:00:00",
+      "lat-lims": "",
+      "lon-lims": "",
+      "shape-file": "/home/roalva/MeshProjects/4815/0-geofabric/results/div_4815_catchments.shp",
+      "model": "",
+      "ensemble": "",
+      "prefix": "div_4815_models_",
+      "email": "rodolfo.alvaradomont@ucalgary.ca",
+      "_flags": [
+        "submit-job",
+        "parsable"
+      ]
+    }],
+
+    "gis": [{
+      "dataset": "landsat",
+      "dataset-dir": "/project/rpp-kshook/Model_Output/Landsat/",
+      "variable": "land-cover",
+      "start-date": "2020",
+      "end-date": "2020",
+      "output-dir": "/home/roalva/scratch/4815/gistool_outputs/landsat",
+      "lat-lims": "",
+      "lon-lims": "",
+      "shape-file": "/home/roalva/MeshProjects/4815/0-geofabric/results/div_4815_catchments.shp",
+      "print-geotiff": "true",
+      "stat": [
+        "frac",
+        "coords"
+      ],
+      "quantile": "",
+      "prefix": "div_4815_models_",
+      "email": "rodolfo.alvaradomont@ucalgary.ca",
+      "_flags": [
+	"include-na",
+        "submit-job",
+        "parsable"
+      ]
+    },
+
+    {
+      "dataset": "soil_class",
+      "dataset-dir": "/project/rpp-kshook/Model_Output/soil_classes/",
+      "variable": "soil_classes",
+      "start-date": "",
+      "end-date": "",
+      "output-dir": "/home/roalva/scratch/4815/gistool_outputs/soil_classes",
+      "lat-lims": "",
+      "lon-lims": "",
+      "shape-file": "/home/roalva/MeshProjects/4815/0-geofabric/results/div_4815_catchments.shp",
+      "print-geotiff": "true",
+      "stat": [
+        "major"
+      ],
+      "quantile": "",
+      "prefix": "div_4815_models_",
+      "email": "rodolfo.alvaradomont@ucalgary.ca",
+      "_flags": [
+	"include-na",
+        "submit-job",
+        "parsable"
+      ]
+    }],
+
+    "remap": [{
+      "case-name": "div_4815_models",
+      "cache": "/home/roalva/scratch/4815/easymore_outputs/temp_dir/",
+      "shapefile": "/home/roalva/MeshProjects/4815/0-geofabric/results/div_4815_catchments.shp",
+      "shapefile-id": "COMID",
+      "source-nc": "/home/roalva/scratch/4815/datatool_outputs/*/*.nc*",
+      "variable-lon": "lon",
+      "variable-lat": "lat",
+      "variable": [
+        "RDRS_v2.1_P_P0_SFC",
+        "RDRS_v2.1_P_HU_1.5m",
+        "RDRS_v2.1_P_TT_1.5m",
+        "RDRS_v2.1_P_UVC_10m",
+        "RDRS_v2.1_A_PR0_SFC",
+        "RDRS_v2.1_P_FB_SFC",
+        "RDRS_v2.1_P_FI_SFC"
+      ],
+      "remapped-var-id": "COMID",
+      "remapped-dim-id": "COMID",
+      "output-dir": "/home/roalva/scratch/4815/easymore_outputs/remapped/",
+      "_flags": [
+        "submit-job"
+      ]
+    }]
+  },
+  "order": {
+    "met": 1,
+    "gis": -1,
+    "remap": 2
+  }
+}
