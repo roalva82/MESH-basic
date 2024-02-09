@@ -1,0 +1,65 @@
+{
+  "exec": {
+    "met": "/home/roalva/repos/datatool/extract-dataset.sh",
+    "remap": "easymore cli"
+  },
+
+  "args": {
+    "met": [{
+      "dataset": "RDRS",
+      "dataset-dir": "/project/rpp-kshook/Model_Output/RDRSv2.1/",
+      "variable": [
+        "RDRS_v2.1_P_P0_SFC",
+        "RDRS_v2.1_P_HU_1.5m",
+        "RDRS_v2.1_P_TT_1.5m",
+        "RDRS_v2.1_P_UVC_10m",
+        "RDRS_v2.1_A_PR0_SFC",
+        "RDRS_v2.1_P_FB_SFC",
+        "RDRS_v2.1_P_FI_SFC"
+      ],
+      "output-dir": "/home/roalva/scratch/4815simple/datatool_outputs",
+      "start-date": "1980-05-01T13:00:00",
+      "end-date": "1980-05-31T12:00:00",
+      "lat-lims": "",
+      "lon-lims": "",
+      "shape-file": "/home/roalva/repos/MESH-basic/0-geofabric/div_4815_catchments_simple.shp",
+      "model": "",
+      "ensemble": "",
+      "prefix": "div_4815simple_models_",
+      "email": "rodolfo.alvaradomont@ucalgary.ca",
+      "_flags": [
+        "submit-job",
+        "parsable"
+      ]
+    }],
+
+    "remap": [{
+      "case-name": "div_4815simple_models",
+      "cache": "/home/roalva/scratch/4815simple/easymore_outputs/temp_dir/",
+      "shapefile": "/home/roalva/repos/MESH-basic/0-geofabric/div_4815_catchments_simple.shp",
+      "shapefile-id": "COMID",
+      "source-nc": "/home/roalva/scratch/4815simple/datatool_outputs/*/*.nc*",
+      "variable-lon": "lon",
+      "variable-lat": "lat",
+      "variable": [
+        "RDRS_v2.1_P_P0_SFC",
+        "RDRS_v2.1_P_HU_1.5m",
+        "RDRS_v2.1_P_TT_1.5m",
+        "RDRS_v2.1_P_UVC_10m",
+        "RDRS_v2.1_A_PR0_SFC",
+        "RDRS_v2.1_P_FB_SFC",
+        "RDRS_v2.1_P_FI_SFC"
+      ],
+      "remapped-var-id": "COMID",
+      "remapped-dim-id": "COMID",
+      "output-dir": "/home/roalva/scratch/4815simple/easymore_outputs/remapped/",
+      "_flags": [
+        "submit-job"
+      ]
+    }]
+  },
+  "order": {
+    "met": 1,
+    "remap": 2
+  }
+}
