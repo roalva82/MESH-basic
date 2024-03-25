@@ -23,7 +23,7 @@
       "end-date": "2015-12-31T12:00:00",
       "lat-lims": "",
       "lon-lims": "",
-      "shape-file": "/home/roalva/scratch/geofabric/4815_catchments.shp",
+      "shape-file": "/home/roalva/scratch/MESH-basic/geofabric/4815_catchments.shp",
       "model": "",
       "ensemble": "",
       "prefix": "4815_",
