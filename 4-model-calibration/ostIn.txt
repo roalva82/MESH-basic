@@ -1,0 +1,42 @@
+ProgramType  DDS
+ObjectiveFunction GCOP
+ModelExecutable  ./ost_mesh.sh
+#PreserveBestModel .save_best.bat
+
+BeginExtraDirs
+model
+EndExtraDirs
+
+BeginFilePairs
+MESH_parameters_CLASS.tpl ; ./model/MESH_parameters_CLASS.ini
+EndFilePairs
+
+BeginParams
+#name     init.	  lower  	upper	 	transformations		format
+___x1  	  random  0.0001   	0.50       	none   none   none	E8.1
+EndParams
+
+#BeginInitParams
+#4.0E-2
+#EndInitParams
+
+BeginResponseVars
+#name	filename			keyword		line		col	token
+NSE	./model/results/Metric.csv ;	OST_NULL	0		1	','
+EndResponseVars
+
+BeginGCOP
+CostFunction NSE
+PenaltyFunction APM
+EndGCOP
+
+BeginConstraints   
+EndConstraints
+
+RandomSeed 12345
+
+BeginDDSAlg
+PerturbationValue 0.2
+MaxIterations 20
+UseRandomParamValues
+EndDDSAlg
