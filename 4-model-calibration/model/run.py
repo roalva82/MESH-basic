@@ -18,12 +18,12 @@ sim_df = pd.read_csv('./results/ROF_D.csv', header=None)
 sim = sim_df[649].to_numpy()
 
 # read observed data
-obs_df = pd.read_csv('./data_obs/05BL027_Daily_Flow_ts.csv', skiprows=1, header=None, names=['ID','PARAM','Date','Flow','SYM'])
+obs_df = pd.read_csv('././ObsFiles/05BL027_Daily_Flow_ts.csv', skiprows=1, header=None, names=['ID','PARAM','Date','Flow','SYM'])
 obs_df['Date'] = pd.to_datetime(obs_df['Date'])
 
 # extract values for observed data
-start_date = '1980-05-02'
-end_date = '1980-05-29'
+start_date = '2015-06-01'
+end_date = '2015-12-31'
 mask = (obs_df['Date'] >= start_date) & (obs_df['Date'] <= end_date)
 obs = obs_df.loc[mask]['Flow'].to_numpy()
 
