@@ -1,0 +1,86 @@
+{
+  "exec": {
+    "gis": "/home/roalva/repos/gistool/extract-gis.sh",
+    "remap": "easymore cli"
+  },
+
+  "args": {
+    "gis": [{
+      "dataset": "landsat",
+      "dataset-dir": "/project/rpp-kshook/Model_Output/Landsat/",
+      "variable": "land-cover",
+      "start-date": "2020",
+      "end-date": "2020",
+      "output-dir": "/home/roalva/scratch/MESH-basic/gistool_outputs/landsat",
+      "lat-lims": "",
+      "lon-lims": "",
+      "shape-file": "/home/roalva/scratch/MESH-basic/geofabric/4815_catchments.shp",
+      "print-geotiff": "true",
+      "stat": [
+        "frac",
+        "coords"
+      ],
+      "quantile": "",
+      "prefix": "4815_",
+      "email": "rodolfo.alvaradomont@ucalgary.ca",
+      "_flags": [
+	"include-na",
+        "submit-job",
+        "parsable"
+      ]
+    },
+
+    {
+      "dataset": "soil_class",
+      "dataset-dir": "/project/rpp-kshook/Model_Output/soil_classes/",
+      "variable": "soil_classes",
+      "start-date": "",
+      "end-date": "",
+      "output-dir": "/home/roalva/scratch/MESH-basic/gistool_outputs/soil_classes",
+      "lat-lims": "",
+      "lon-lims": "",
+      "shape-file": "/home/roalva/scratch/MESH-basic/geofabric/4815_catchments.shp",
+      "print-geotiff": "true",
+      "stat": [
+        "major"
+      ],
+      "quantile": "",
+      "prefix": "4815_",
+      "email": "rodolfo.alvaradomont@ucalgary.ca",
+      "_flags": [
+	"include-na",
+        "submit-job",
+        "parsable"
+      ]
+    }],
+
+    "remap": [{
+      "case-name": "4815_",
+      "cache": "/home/roalva/scratch/MESH-basic/easymore_outputs/temp_dir/",
+      "shapefile": "/home/roalva/scratch/MESH-basic/geofabric/4815_catchments.shp",
+      "shapefile-id": "COMID",
+      "source-nc": "/home/roalva/scratch/MESH-basic/datatool_outputs/*/*.nc*",
+      "variable-lon": "lon",
+      "variable-lat": "lat",
+      "variable": [
+        "RDRS_v2.1_P_P0_SFC",
+        "RDRS_v2.1_P_HU_1.5m",
+        "RDRS_v2.1_P_TT_1.5m",
+        "RDRS_v2.1_P_UVC_10m",
+        "RDRS_v2.1_A_PR0_SFC",
+        "RDRS_v2.1_P_FB_SFC",
+        "RDRS_v2.1_P_FI_SFC"
+      ],
+      "remapped-var-id": "COMID",
+      "remapped-dim-id": "COMID",
+      "output-dir": "/home/roalva/scratch/MESH-basic/easymore_outputs/remapped/",
+      "_flags": [
+        "submit-job"
+      ]
+    }]
+  },
+  "order": {
+    "gis": -1,
+    "remap": 2
+  }
+}

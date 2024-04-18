@@ -20,7 +20,7 @@
       ],
       "output-dir": "/home/roalva/scratch/MESH-basic/datatool_outputs",
       "start-date": "2015-01-01T13:00:00",
-      "end-date": "2015-12-31T12:00:00",
+      "end-date": "2015-01-31T12:00:00",
       "lat-lims": "",
       "lon-lims": "",
       "shape-file": "/home/roalva/scratch/MESH-basic/geofabric/4815_catchments.shp",
