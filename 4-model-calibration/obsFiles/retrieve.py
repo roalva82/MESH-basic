@@ -63,8 +63,7 @@ def retrieve_data_from_api(stations, collection, download_variable,datetime_colu
 
         # Creation of a data frame if there is data for the chosen time period
 		if hydro_data["features"]:
-            
-            # Creation of a dictionary in a format compatible with Pandas
+            ## Creation of a dictionary in a format compatible with Pandas
 			historical_data_format = [
 				{
 					"LATITUDE": el["geometry"]["coordinates"][1],
@@ -74,13 +73,13 @@ def retrieve_data_from_api(stations, collection, download_variable,datetime_colu
 				for el in hydro_data["features"]
 			]
 
-            # Creation of the data frame
+            ## Creation of the data frame
 			historical_data_df = pd.DataFrame(
 				historical_data_format,
 				columns=save_columns,
 			)
             
-            # Detect and convert data types of columns
+            ## Detect and convert data types of columns
 			historical_data_df = historical_data_df.infer_objects(copy=False)
 
             # Creating an index with the date in a datetime format
@@ -93,9 +92,8 @@ def retrieve_data_from_api(stations, collection, download_variable,datetime_colu
 			historical_data_df.to_csv(output_csv_path, index=True)
 
 			logger.info(f"{download_variable} from {collection} for station {station} output to {output_csv_path}")
-        
-        # If there is no data for the chosen time period, the station
-        # will be removed from the dataset
+		# If there is no data for the chosen time period, the station
+		# will be removed from the dataset
 		else:
 			stations_without_data.append(station)
 
@@ -135,14 +133,20 @@ collection_data = 'hydrometric-daily-mean'
 download_variable = "DISCHARGE"
 datetime_column = "DATE"
 output_dir = './'
-start_date = "2005-01-01"
+start_date = "2015-01-01"
 end_date = "2016-01-01"
 
 stations = get_stations(province, collection_stations, api_url)
 stations_id = [el[0] for el in stations]
 
 stations_with_data = retrieve_data_from_api(stations_id, collection_data, download_variable, datetime_column, api_url, output_dir, [], time_limits=True, start_date=start_date, end_date=end_date)
-stations_df = pd.DataFrame(stations_with_data)
+
+# add coordinates to the stations with data
+df1 = pd.DataFrame(stations, columns=['ID','Lat','Lon'])
+df2 = pd.DataFrame(stations_with_data, columns=['ID'])
+stations_df = pd.merge(df1, df2, on='ID', how='inner')
+
+# save stations to csv including coordinates (these are needed later to identify the polygon of the subbasins where it is located)
 stations_df.to_csv('./stations_with_data.csv')
 
 
